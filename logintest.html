@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <style>
+      * {
+          margin: 0;
+          padding: 0;
+      }
+      body {
+          background-color: #DDD;
+      }
+      .outer {
+          width: 100vw;
+          height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-items: center;
+          justify-content: center;
+      }
+      .panel {
+          background-color: white;
+          width: 60%;
+          padding: 20px;
+      }
+      .list {
+          display: grid;
+          grid-template-columns: auto auto;
+          grid-gap: 10px;
+          justify-content: start;
+      }
+      .container {
+          display: flex
+      }
+  </style>
+</head>
+<body>
+    <div class='outer'>
+        <div class='panel'>
+            <h3>Sample Login "Frontpoint"</h4>
+            <div style='height: 10px'></div>
+            <h4>Raw JSON object</h5>
+            <div id='app'></div>
+            <div style='height: 10px'></div>
+            <h4>Arbitrary List of Fields from the JSON Object</h5>
+            <div class='list'>
+                <p>First Name: </p>
+                <p id='first_name_field'></p>
+                <p>Last Name: </p>
+                <p id='last_name_field'></p>
+                <p>User ID: </p>
+                <p id='user_id_field'></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- for jquery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
+    <script>
+        // Login using native JS ajax api
+        function nativeLogin(username, password) {
+            return new Promise((resolve, reject) => {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.open("POST", "/LAMP/Login.php", true);
+                xmlhttp.setRequestHeader('Content-Type', 'application/json');
+                xmlhttp.onload = function() {
+                    if (this.status === 200) {
+                        console.log(this.status);
+                        resolve(JSON.parse(this.responseText));
+                    } else {
+                        // I'm not sure if this is "good practice", but it works -Ryan
+                        let error = new Error();
+                        error.response = JSON.parse(this.responseText);
+                        error.status = this.status;
+                        reject(error);
+                    }
+                };
+                xmlhttp.send(JSON.stringify({
+                    username: username,
+                    password: password
+                }));
+            });
+        }
+
+        nativeLogin("ryandoescoding", "password")
+        .then((response) => {
+            console.log('success', response);
+            document.getElementById('app').innerHTML = `<p>${JSON.stringify(response)}</p>`;
+            document.getElementById('first_name_field').innerHTML = response.data.first_name;
+            document.getElementById('last_name_field').innerHTML = response.data.last_name;
+            document.getElementById('user_id_field').innerHTML = response.data.user_id;
+        })
+        .catch((err) => {
+            console.log('error', err.response);
+            if (err.response.data === null) {
+                alert('Invalid Credentials');
+            }
+        });
+
+
+
+        
+
+        // ================================
+        // Ryan playing around with stuff
+        // ================================
+        
+        // // Using native JS fetch api
+        // async function fetchLogin(username, password) {
+        //     const data = await fetch("/LAMP/Login.php", {
+        //         method: "POST",
+        //         headers: {
+        //             "Content-Type": "application/json",
+        //         },
+        //         body: JSON.stringify({
+        //             username: username,
+        //             password: password
+        //         })
+        //     });
+        //     const text = await data.json();
+        //     return text;    
+        // }
+        // fetchLogin("ryandoescoding", "password")
+        // .then((response) => {
+        //     console.log('fetch api', response);
+        // })
+        // .catch(err => console.log('fetch api error', err));
+
+        // // Using jQuery .ajax api
+        // function ajaxLogin(username, password) {
+        //     return $.ajax({
+        //         url: '/LAMP/Login.php',
+        //         type: 'POST',
+        //         contentType: 'application/json',
+        //         data: JSON.stringify({
+        //             username: username,
+        //             password: password
+        //         })
+        //     });
+        // }
+        // ajaxLogin("ryandoescoding", "password")
+        // .done((response) => {
+        //     console.log('jQuery api', response);
+        // })
+        // .fail((err) => console.log('jQuery api error', err));
+
+    </script>
+</body>
+</html>

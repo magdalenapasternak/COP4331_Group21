@@ -1,9 +1,9 @@
 <?php
     // Status Codes used by this endpoint 
-    $STATUS_SUCCESS = 200;
-    $STATUS_BAD_REQUEST = 400;
-    $STATUS_UNAUTHORIZED = 401;
-    $STATUS_INTERNAL_ERROR = 500;
+    const STATUS_SUCCESS = 200;
+    const STATUS_BAD_REQUEST = 400;
+    const STATUS_UNAUTHORIZED = 401;
+    const STATUS_INTERNAL_ERROR = 500;
 
     // Utility for sending back a json response
     function send_json_response($status, $data) {
@@ -20,7 +20,7 @@
     // If a parameter is missing, sends an error response and quits
     function verify_request_field($request, $fieldName) {
         if (!isset($request[$fieldName])) {
-            send_json_response($STATUS_BAD_REQUEST, (object)array(
+            send_json_response(STATUS_BAD_REQUEST, (object)array(
                 'data' => NULL,
                 'error' => 'Request JSON must include a ' . $fieldName . ' field',
             ));
@@ -31,7 +31,7 @@
     // If the request type is not what is expected, sends an error response and quits
     function verify_request_type($type) {
         if ($_SERVER['REQUEST_METHOD'] !== $type) {
-            send_json_response($STATUS_BAD_REQUEST, (object)array(
+            send_json_response(STATUS_BAD_REQUEST, (object)array(
                 'data' => NULL,
                 'error' => 'Must be a ' . $type . ' request',
             ));
@@ -43,7 +43,7 @@
     function connect_to_db() {
         $conn = new mysqli("10.0.0.4", "contacts_app", "#oigCH10*oq^", "contacts_app");
         if($conn->connect_error) {
-            send_json_response($STATUS_INTERNAL_ERROR, (object)array(
+            send_json_response(STATUS_INTERNAL_ERROR, (object)array(
                 'data' => NULL,
                 'error' => 'Could not connect to database',
             ));
@@ -68,14 +68,14 @@
     }
 
     function send_invalid_credentials() {
-        send_json_response($STATUS_UNAUTHORIZED, (object)array(
+        send_json_response(STATUS_UNAUTHORIZED, (object)array(
             'data' => NULL,
             'error'=> 'Incorrect credentials',
         ));
     }
 
-    verify_request_type('GET');
-
+    verify_request_type('POST');
+    
     $request = decode_JSON_request();
     verify_request_field($request, 'username');
     verify_request_field($request, 'password');
@@ -86,7 +86,7 @@
         $result = $results[0];
         if (verify_password($request, $result)) {
             unset($result['password']);
-            send_json_response($STATUS_SUCCESS, (object)array(
+            send_json_response(STATUS_SUCCESS, (object)array(
                 'data' => $result,
                 'error' => '',
             ));
