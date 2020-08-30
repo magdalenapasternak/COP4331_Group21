@@ -14,8 +14,9 @@
       .outer {
           width: 100vw;
           height: 100vh;
+          padding: 20px;
           display: flex;
-          align-items: center;
+          align-items: start;
           justify-items: center;
           justify-content: center;
       }
@@ -39,11 +40,22 @@
     <div class='outer'>
         <div class='panel'>
             <h3>Sample Login "Frontpoint"</h4>
+            <div style='height: 30px'></div>
+            <div class='list'>
+                <p>Username</p>
+                <p>Password</p>
+                <input id='username' type='text' value='ryandoescoding'></input>
+                <input id='password' type='text' value='password'></input>
+            </div>
             <div style='height: 10px'></div>
+            <button id='submit'>Login</button>
+            <div style='height: 20px'></div>
             <h4>Raw JSON object</h5>
-            <div id='app'></div>
             <div style='height: 10px'></div>
+            <div id='app' style='overflow-x: scroll; white-space: nowrap;'></div>
+            <div style='height: 20px'></div>
             <h4>Arbitrary List of Fields from the JSON Object</h5>
+            <div style='height: 10px'></div>
             <div class='list'>
                 <p>First Name: </p>
                 <p id='first_name_field'></p>
@@ -51,6 +63,8 @@
                 <p id='last_name_field'></p>
                 <p>User ID: </p>
                 <p id='user_id_field'></p>
+                <p>Login Status: </p>
+                <p id='login_status_field'></p>
             </div>
         </div>
     </div>
@@ -67,7 +81,6 @@
                 xmlhttp.setRequestHeader('Content-Type', 'application/json');
                 xmlhttp.onload = function() {
                     if (this.status === 200) {
-                        console.log(this.status);
                         resolve(JSON.parse(this.responseText));
                     } else {
                         // I'm not sure if this is "good practice", but it works -Ryan
@@ -84,21 +97,31 @@
             });
         }
 
-        nativeLogin("ryandoescoding", "password")
-        .then((response) => {
-            console.log('success', response);
-            document.getElementById('app').innerHTML = `<p>${JSON.stringify(response)}</p>`;
-            document.getElementById('first_name_field').innerHTML = response.data.first_name;
-            document.getElementById('last_name_field').innerHTML = response.data.last_name;
-            document.getElementById('user_id_field').innerHTML = response.data.user_id;
-        })
-        .catch((err) => {
-            console.log('error', err.response);
-            if (err.response.data === null) {
-                alert('Invalid Credentials');
-            }
-        });
+        document.getElementById('submit').addEventListener('click', () => {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
 
+            nativeLogin(username, password)
+            .then((response) => {
+                document.getElementById('app').innerHTML = `<p>${JSON.stringify(response)}</p>`;
+                // if the user successfully logged in
+                if (response.data) {
+                    document.getElementById('first_name_field').innerHTML = response.data.first_name;
+                    document.getElementById('last_name_field').innerHTML = response.data.last_name;
+                    document.getElementById('user_id_field').innerHTML = response.data.user_id;
+                    document.getElementById('login_status_field').innerHTML = '-- Authorized --';
+                // if the user gave an incorrect log in
+                } else {
+                    document.getElementById('first_name_field').innerHTML = '';
+                    document.getElementById('last_name_field').innerHTML = '';
+                    document.getElementById('user_id_field').innerHTML = '';
+                    document.getElementById('login_status_field').innerHTML = '-- Unauthorized --';
+                }
+            })
+            .catch((err) => {
+                console.log('error', err.response);
+            });
+        });
 
 
         

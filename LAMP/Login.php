@@ -1,8 +1,10 @@
 <?php
+    //TODO Should login return anything except a session/user_id?
+    //     Or will the other pages fetch this information independently?
+
     // Status Codes used by this endpoint 
     const STATUS_SUCCESS = 200;
     const STATUS_BAD_REQUEST = 400;
-    const STATUS_UNAUTHORIZED = 401;
     const STATUS_INTERNAL_ERROR = 500;
 
     // Utility for sending back a json response
@@ -68,14 +70,14 @@
     }
 
     function send_invalid_credentials() {
-        send_json_response(STATUS_UNAUTHORIZED, (object)array(
+        send_json_response(STATUS_SUCCESS, (object)array(
             'data' => NULL,
             'error'=> 'Incorrect credentials',
         ));
     }
 
     verify_request_type('POST');
-    
+
     $request = decode_JSON_request();
     verify_request_field($request, 'username');
     verify_request_field($request, 'password');
