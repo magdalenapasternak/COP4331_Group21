@@ -1,5 +1,5 @@
 <?php
-     // Status Codes used by this endpoint 
+     // HTTP status codes
      const STATUS_SUCCESS = 200;
      const STATUS_BAD_REQUEST = 400;
      const STATUS_INTERNAL_ERROR = 500;
@@ -40,6 +40,8 @@
  
      // Attempts to connect to the database. On failure, it sends an error response and quits
      function connect_to_db() {
+         //TODO Commiting database information to version control is a sin. Is it worth it to use environment
+         //     variables here?
          $conn = new mysqli("10.0.0.4", "contacts_app", "#oigCH10*oq^", "contacts_app");
          if($conn->connect_error) {
              send_json_response(STATUS_INTERNAL_ERROR, (object)array(
