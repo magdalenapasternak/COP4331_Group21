@@ -1,9 +1,8 @@
 <?php
-  // Status Codes used by this endpoint //
-  $STATUS_SUCCESS = 200;
-  $STATUS_BAD_REQUEST = 400;
-  $STATUS_UNAUTHORIZED = 401;
-  $STATUS_INTERNAL_ERROR = 500;
+  // Status Codes used by this endpoint
+  const STATUS_SUCCESS = 200;
+  const STATUS_BAD_REQUEST = 400;
+  const STATUS_INTERNAL_ERROR = 500;
   ////////////////////////////////////////
 
   $user_id = 0;
