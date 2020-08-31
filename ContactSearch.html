@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <style>
+      * {
+          margin: 0;
+          padding: 0;
+      }
+      body {
+          background-color: #DDD;
+      }
+      .outer {
+          width: 100vw;
+          height: 100vh;
+          padding: 20px;
+          display: flex;
+          align-items: start;
+          justify-items: center;
+          justify-content: center;
+      }
+      .panel {
+          background-color: white;
+          width: 60%;
+          padding: 20px;
+      }
+      .list {
+          display: grid;
+          grid-template-columns: auto auto;
+          grid-gap: 10px;
+          justify-content: start;
+      }
+      .container {
+          display: flex
+      }
+  </style>
+</head>
+<body>
+    <div class='outer'>
+        <div class='panel'>
+            <h3>Thanks for the "borrowed" code Ryan</h4>
+            <div style='height: 30px'></div>
+            <div class='list'>
+                <p>First Name</p>
+                <input id='first_name' type='text' value=''></input>
+                <p>Last Name</p>
+                <input id='last_name' type='text' value=''></input>
+                <p>Email</p>
+                <input id='email' type='text' value=''></input>
+                <p>Phone Number</p>
+                <input id='phone_number' type='text' value=''></input>
+            </div>
+            <div style='height: 10px'></div>
+            <button id='submit'>Seach</button>
+            <div style='height: 20px'></div>
+            <div style='height: 10px'></div>
+            <div id='app' style='overflow-x: scroll; white-space: nowrap;'></div>
+            <div style='height: 20px'></div>
+            <h4>Results</h5>
+            <div style='height: 10px'></div>
+            <div class="container">
+            <p id='table_cont'></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- for jquery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
+    <script>
+        // Login using native JS ajax api
+        function nativeLogin(first_name, last_name, email, phone_number) {
+            return new Promise((resolve, reject) => {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.open("POST", "/LAMP/readContact.php", true);
+                xmlhttp.setRequestHeader('Content-Type', 'application/json');
+                xmlhttp.onload = function() {
+                    if (this.status === 200) {
+                        resolve(JSON.parse(this.responseText));
+                    } else {
+                        // I'm not sure if this is "good practice", but it works -Ryan
+                        let error = new Error();
+                        error.response = JSON.parse(this.responseText);
+                        error.status = this.status;
+                        reject(error);
+                    }
+                };
+                xmlhttp.send(JSON.stringify({
+                  "user_id": 0,
+                  "first_name": first_name,
+                  "last_name": last_name,
+                  "email": email,
+                  "phone_number": phone_number
+                }));
+            });
+        }
+
+        function clearBox(elementID)
+        {
+            document.getElementById(elementID).innerHTML = "";
+        }
+
+        document.getElementById('submit').addEventListener('click', () => {
+            clearBox('table_cont');
+            const first_name = document.getElementById('first_name').value;
+            const last_name = document.getElementById('last_name').value;
+            const email = document.getElementById('email').value;
+            const phone_number = document.getElementById('phone_number').value;
+
+            nativeLogin(first_name, last_name, email, phone_number)
+            .then((response) => {
+              document.getElementById('app').innerHTML = `<p>${JSON.stringify(response)}</p>`;
+              var body = document.getElementById('table_cont');
+              var tbl = document.createElement("table");
+              var tblBody = document.createElement("tbody");
+
+              var row = document.createElement("tr");
+              var cell = document.createElement("td");
+              var cellText = document.createTextNode("Contact ID");
+              cell.appendChild(cellText);
+              row.appendChild(cell);
+              cell = document.createElement("td");
+              cellText = document.createTextNode("User ID");
+              cell.appendChild(cellText);
+              row.appendChild(cell);
+              cell = document.createElement("td");
+              cellText = document.createTextNode("First Name");
+              cell.appendChild(cellText);
+              row.appendChild(cell);
+              cell = document.createElement("td");
+              cellText = document.createTextNode("Last Name");
+              cell.appendChild(cellText);
+              row.appendChild(cell);
+              cell = document.createElement("td");
+              cellText = document.createTextNode("Email");
+              cell.appendChild(cellText);
+              row.appendChild(cell);
+              cell = document.createElement("td");
+              cellText = document.createTextNode("Phone Number");
+              cell.appendChild(cellText);
+              row.appendChild(cell);
+              tblBody.appendChild(row);
+
+              for (var i = 0; i < response.data.length; i++) {
+                row = document.createElement("tr");
+                  cell = document.createElement("td");
+                  cellText = document.createTextNode(response.data[i].contact_id);
+                  cell.appendChild(cellText);
+                  row.appendChild(cell);
+                  cell = document.createElement("td");
+                  cellText = document.createTextNode(response.data[i].user_id);
+                  cell.appendChild(cellText);
+                  row.appendChild(cell);
+                  cell = document.createElement("td");
+                  cellText = document.createTextNode(response.data[i].first_name);
+                  cell.appendChild(cellText);
+                  row.appendChild(cell);
+                  cell = document.createElement("td");
+                  cellText = document.createTextNode(response.data[i].last_name);
+                  cell.appendChild(cellText);
+                  row.appendChild(cell);
+                  cell = document.createElement("td");
+                  cellText = document.createTextNode(response.data[i].email);
+                  cell.appendChild(cellText);
+                  row.appendChild(cell);
+                  cell = document.createElement("td");
+                  cellText = document.createTextNode(response.data[i].phone_number);
+                  cell.appendChild(cellText);
+                  row.appendChild(cell);
+                tblBody.appendChild(row);
+              }
+              tbl.appendChild(tblBody);
+              body.appendChild(tbl);
+              tbl.setAttribute("border", "2");
+
+            })
+            .catch((err) => {
+                console.log('error', err.response);
+            });
+        });
+
+
+
+        /*
+        document.getElementById('app').innerHTML = `<p>${JSON.stringify(response)}</p>`;
+        document.getElementById('contactId_field').innerHTML = response.data[0].contact_id;
+        document.getElementById('userId_field').innerHTML = response.data[0].user_id;
+        document.getElementById('first_name_field').innerHTML = response.data[0].first_name;
+        document.getElementById('last_name_field').innerHTML = response.data[0].last_name;
+        document.getElementById('email_field').innerHTML = response.data[0].email;
+        document.getElementById('phone_number_field').innerHTML = response.data[0].phone_number;
+        */
+    </script>
+</body>
+</html>
