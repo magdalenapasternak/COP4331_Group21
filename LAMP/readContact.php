@@ -1,5 +1,5 @@
 <?php
-  include 'Commons.php';
+  include 'commons.php';
   verify_request_type('POST');
 
   $searchResults = "";
