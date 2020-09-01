@@ -23,17 +23,7 @@
 
   $sql = create_sql_query($contact_id, $user_id, $first_name, $last_name, $email, $phone_number);
 
-  $result = $conn->query($sql);
-
-  send_json_response($STATUS_SUCCESS, (object)array(
-      'user_id' => $user_id,
-      'contact_id' => $contact_id,
-      'sql' => $sql,
-      //'result' => $result->fetch_all(MYSQLI_ASSOC),
-  ));
-
-  /*
-  if(mysqli_query($conn, $sql)) {
+  if($conn->multi_query($sql)) {
     send_json_response($STATUS_SUCCESS, (object)array(
         'data' => NULL,
         'error' => 'Contact successfully updated',
@@ -44,7 +34,7 @@
         'error' => 'Error',
     ));
   }
-  */
+
   ///////////////////////////
   // Function Declarations //
   ///////////////////////////
