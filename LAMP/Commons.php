@@ -38,7 +38,7 @@
          }
      }
  
-     // Attempts to connect to the database. On failure, it sends an error response and quits
+     // Attempts to connect to the database. On failure, sends an error response and quits
      function connect_to_db() {
          //TODO Commiting database information to version control is a sin. Is it worth it to use environment
          //     variables here?
