@@ -1,7 +1,4 @@
 <?php
-    //TODO Should login return anything except a session/user_id?
-    //     Or will the other pages fetch this information independently?
-
     include 'commons.php';
 
     // Perform the SQL query to find all users with the username provided
