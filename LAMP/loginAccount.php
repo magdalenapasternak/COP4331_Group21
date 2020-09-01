@@ -22,6 +22,7 @@
     function send_invalid_credentials() {
         send_json_response(STATUS_SUCCESS, (object)array(
             'data' => NULL,
+            'result' =>  'INVALID_CREDENTIALS',
             'error'=> 'Incorrect credentials',
         ));
     }
@@ -40,6 +41,7 @@
             unset($result['password']);
             send_json_response(STATUS_SUCCESS, (object)array(
                 'data' => $result,
+                'result' => 'SUCCESS',
                 'error' => '',
             ));
         } else {
