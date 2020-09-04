@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <link rel="stylesheet" a href="css/bootstrap.css" />
+    <link rel="stylesheet" a href="css/fonts.css" />
+    <link rel="stylesheet" a href="css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      html {
+        background: url(../images/contactspage.jpg) no-repeat center fixed;
+        background-size: cover;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="register form-container">
+      <span class="lrtitle">Register</span>
+      <div class="container">
+        <div class="row">
+          <div class="col-4">
+            <p>First Name</p>
+          </div>
+          <div class="col-7">
+            <input type="text" id="name" placeholder="Enter Your Name" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4">
+            <p>Last Name</p>
+          </div>
+          <div class="col-7">
+            <input
+              type="text"
+              id="lastname "
+              placeholder="Enter Your Lastname"
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4">
+            <p>Username</p>
+          </div>
+          <div class="col-7">
+            <input
+              type="text"
+              id="user-name "
+              placeholder="Enter Your Username"
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4">
+            <p>Password</p>
+          </div>
+          <div class="col-7">
+            <input
+              type="password"
+              id="login-password "
+              placeholder="Enter Password"
+            />
+          </div>
+        </div>
+        <button
+          type="button"
+          id="loginbutton"
+          class="buttons"
+          onclick="doRegister();"
+        >
+          Sign Up
+        </button>
+        <br />
+        <a href="loginpage.html">Already have an account? Sign in!</a>
+
+        <span id="login-result"></span>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,271 @@
+/* csss rule */
+/* selectors */
+/* declaration block */
+/* declaration */
+/* property */
+/* value */
+
+* {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+body {
+  margin: 0;
+  padding: 0;
+  background-color: rgba(65, 67, 73, 100);
+}
+
+.form-container {
+  background: rgba(210, 211, 211, 0.7);
+  color: #000;
+  position: absolute;
+  /* position: fixed; */
+  /* in case fixed is not working */
+  box-sizing: border-box;
+  border-radius: 2pc;
+  /* border-block-color: green; */
+
+  font-family: "Roboto", sans-serif;
+  /* font-family: "Open Sans", sans-serif; */
+  text-align: center;
+}
+
+.home {
+  width: 30rem;
+  height: 20rem;
+  top: 80%;
+  left: 85%;
+  transform: translate(-80%, -85%);
+}
+
+.login {
+  width: 30rem;
+  height: 19rem;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.register {
+  width: 30rem;
+  height: 25rem;
+  top: 80%;
+  left: 85%;
+  transform: translate(-80%, -85%);
+}
+
+.search {
+  top: 30%;
+  left: 47%;
+  transform: translate(-30%, -47%);
+  padding: 0;
+  padding: 1rem;
+}
+
+.col-4 {
+  /* text-align: ; */
+  text-align: right;
+  height: 100%;
+  font-weight: bold;
+  margin-top: 0.5rem;
+  margin-right: -1rem;
+  padding-left: 2rem;
+}
+.newcontact {
+  color: #7f2438;
+  font-size: 3rem;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.addcontact {
+  width: 30rem;
+  height: 20rem;
+  top: 80%;
+  left: 85%;
+  transform: translate(-80%, -85%);
+}
+
+.lrtitle {
+  /* one of those colors */
+  color: darkred;
+  color: rgba(100, 28, 44, 1);
+  color: #7f2438;
+  /* color: #922438; */
+
+  /* font-style: oblique; */
+  font-size: 5rem;
+  font-weight: 700;
+  /* border-radius: 5%; */
+  text-transform: uppercase;
+
+  /* left: 90%; */
+  /* bottom: 50%; */
+}
+
+.form-container input {
+  border: 0.1rem solid #d2d3d3;
+
+  padding: 1rem;
+  border-radius: 0.5pc;
+  background-color: rgba(237, 239, 240, 0.5);
+  height: 2.5rem;
+  color: #24292d;
+  font-size: 16px;
+  margin: 0;
+  margin-bottom: 0.5rem;
+}
+
+.buttons {
+  border: none;
+  outline: none;
+  height: 2rem;
+  width: 7rem;
+  background: #24292d;
+  color: #d2d3d3;
+  border-radius: 2pc;
+  margin: 0.3rem;
+  /* margin */
+}
+
+.buttons:hover {
+  background: #7f2438;
+  /* darkred; */
+  /* color: rgba(100, 28, 44, 1); */
+  /* color: #7f2438; */
+  /* color: #922438; */
+}
+.form-container a {
+  text-decoration: none;
+  font-size: 0.8rem;
+  color: #24292d;
+}
+.form-container a:hover {
+  color: #7f2438;
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: #7f2438;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: #d2d3d3;
+  text-align: center;
+  padding: 0.8rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  background: #d2d3d3;
+  color: #7f2438;
+}
+
+.contactbook a {
+  display: block;
+  padding: 1rem;
+  text-align: center;
+  background: #7f2438;
+  color: #d2d3d3;
+  margin: 1rem;
+  border-radius: 2pc;
+}
+
+.contactbook a:hover {
+  background: #d2d3d3;
+  color: #7f2438;
+}
+
+.table-container {
+  color: #000;
+  position: absolute;
+  background: rgba(210, 211, 211, 0.7);
+  /* box-sizing: border-box; */
+  border-radius: 2pc;
+
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  width: 45rem;
+  height: 20rem;
+  /* border: 7rem; */
+  top: 70%;
+  left: 60%;
+  transform: translate(-70%, -60%);
+  /* overflow-y: auto; */
+  /* overflow: scroll; */
+  overflow: scroll;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.table-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.table-container {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.contactstable {
+  width: 99%;
+  margin: 0rem;
+}
+
+td,
+th {
+  /* border: 1px solid #eeeeee; */
+  /* border-top: none; */
+  /* text-align: left; */
+  padding: 0.5rem;
+  /* color: red; */
+  /* font-size: 14px; */
+}
+th {
+  padding-top: 0.5rem;
+}
+
+tr {
+  /* background-color: #fff; */
+  /* border: none; */
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: auto auto auto 4.5rem;
+
+  margin-left: 1%;
+  width: 100%;
+}
+a.edit {
+  margin: 0;
+  color: black;
+}
+
+a.delete {
+  color: #7f2438;
+}
+tr:first-child:hover {
+  cursor: default;
+  background-color: transparent;
+}
+
+tr:hover {
+  background-color: #d2d3d3;
+}
+
+.expanded-row-content {
+  border-top: none;
+  display: grid;
+  grid-column: 1/-1;
+  color: #d2d3d3;
+  font-size: 1rem;
+  background-color: rgba(127, 36, 56, 0.9);
+}
+
+.hide-row {
+  display: none;
+}

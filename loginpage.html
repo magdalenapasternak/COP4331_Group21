@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" a href="css/bootstrap.css" />
+    <link rel="stylesheet" a href="css/fonts.css" />
+    <link rel="stylesheet" a href="css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <script src="js/bootstrapjquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/proper.js"></script>
+    <title>Contact Book</title>
+    <style>
+      html {
+        background: url(./images/loginpage.jpg) no-repeat center fixed;
+        background-size: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login form-container">
+      <!-- <p id="logintitle">Login</p> -->
+      <span class="lrtitle">Login</span>
+
+      <!-- Username -->
+      <input type="text" id="login-name " placeholder="Enter Username" />
+      <br />
+
+      <!-- Password -->
+      <input
+        type="password"
+        id="login-password "
+        placeholder="Enter Password"
+      />
+      <br />
+
+      <button
+        type="button"
+        id="loginbutton"
+        class="buttons"
+        onclick="doLogin();"
+      >
+        Sign In
+      </button>
+      <br />
+      <a href="registerpage.html">New member? Sign up!</a>
+
+      <span id="login-result"></span>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Contacts</title>
+    <link rel="stylesheet" a href="css/bootstrap.css" />
+    <link rel="stylesheet" a href="css/fonts.css" />
+    <link rel="stylesheet" a href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css" />
+    <style>
+      html {
+        background: url(./images/loginpage.jpg) no-repeat center fixed;
+        background-size: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar">
+      <a href="home.html">Home</a>
+      <a href="searchcontacts.html">Search</a>
+      <a href="addcontacts.html">Add New Contact</a>
+      <a href="loginpage.html">Logout</a>
+    </div>
+    <div class="search form-container">
+      <input type="text" id="search " placeholder="Search..." />
+      <br />
+      <button
+        type="button"
+        id="searchbutton"
+        class="buttons"
+        onclick="doSearch();"
+      >
+        Search
+      </button>
+    </div>
+
+    <!-- Table of contacts -->
+    <div class="table-container">
+      <table class="contactstable scroll">
+        <tr>
+          <th class="tl column tableheader tlfname">First Name</th>
+          <th class="tl column tableheader tllname">Last Name</th>
+          <th class="tl column tableheader phone">Phone Number</th>
+        </tr>
+        <tr onClick="toggleRow(this)">
+          <td>JON</td>
+          <td>SMITH</td>
+          <td>123-456-7890</td>
+          <td>
+            <a class="edit" title="Edit" data-toggle="tooltip"
+              ><i class="material-icons">&#xE254;</i></a
+            >
+            <a class="delete" title="Delete" data-toggle="tooltip"
+              ><i class="material-icons">&#xE872;</i></a
+            >
+          </td>
+          <td class="expanded-row-content hide-row">
+            <p class="address">Address: 123 Main Av, Orlando</p>
+            <p class="email">email: myemail@email.com</p>
+          </td>
+        </tr>
+        <tr onClick="toggleRow(this)">
+          <td>JON</td>
+          <td>SMITH</td>
+          <td>123-456-7890</td>
+          <td>
+            <a class="edit" title="Edit" data-toggle="tooltip"
+              ><i class="material-icons">&#xE254;</i></a
+            >
+            <a class="delete" title="Delete" data-toggle="tooltip"
+              ><i class="material-icons">&#xE872;</i></a
+            >
+          </td>
+          <td class="expanded-row-content hide-row">
+            <p class="address">Address: 123 Main Av, Orlando</p>
+            <p class="email">email: myemail@email.com</p>
+          </td>
+        </tr>
+        <tr onClick="toggleRow(this)">
+          <td>JON</td>
+          <td>SMITH</td>
+          <td>123-456-7890</td>
+          <td>
+            <a class="edit" title="Edit" data-toggle="tooltip"
+              ><i class="material-icons">&#xE254;</i></a
+            >
+            <a class="delete" title="Delete" data-toggle="tooltip"
+              ><i class="material-icons">&#xE872;</i></a
+            >
+          </td>
+          <td class="expanded-row-content hide-row">
+            <p class="address">Address: 123 Main Av, Orlando</p>
+            <p class="email">email: myemail@email.com</p>
+          </td>
+        </tr>
+        <tr onClick="toggleRow(this)">
+          <td>JON</td>
+          <td>SMITH</td>
+          <td>123-456-7890</td>
+          <td>
+            <a class="edit" title="Edit" data-toggle="tooltip"
+              ><i class="material-icons">&#xE254;</i></a
+            >
+            <a class="delete" title="Delete" data-toggle="tooltip"
+              ><i class="material-icons">&#xE872;</i></a
+            >
+          </td>
+          <td class="expanded-row-content hide-row">
+            <p class="address">Address: 123 Main Av, Orlando</p>
+            <p class="email">email: myemail@email.com</p>
+          </td>
+        </tr>
+        <tr onClick="toggleRow(this)">
+          <td>JON</td>
+          <td>SMITH</td>
+          <td>123-456-7890</td>
+          <td>
+            <a class="edit" title="Edit" data-toggle="tooltip"
+              ><i class="material-icons">&#xE254;</i></a
+            >
+            <a class="delete" title="Delete" data-toggle="tooltip"
+              ><i class="material-icons">&#xE872;</i></a
+            >
+          </td>
+          <td class="expanded-row-content hide-row">
+            <p class="address">Address: 123 Main Av, Orlando</p>
+            <p class="email">email: myemail@email.com</p>
+          </td>
+        </tr>
+        <tr onClick="toggleRow(this)">
+          <td>JON</td>
+          <td>SMITH</td>
+          <td>123-456-7890</td>
+          <td>
+            <a class="edit" title="Edit" data-toggle="tooltip"
+              ><i class="material-icons">&#xE254;</i></a
+            >
+            <a class="delete" title="Delete" data-toggle="tooltip"
+              ><i class="material-icons">&#xE872;</i></a
+            >
+          </td>
+          <td class="expanded-row-content hide-row">
+            <p class="address">Address: 123 Main Av, Orlando</p>
+            <p class="email">email: myemail@email.com</p>
+          </td>
+        </tr>
+        <tr onClick="toggleRow(this)">
+          <td>JON</td>
+          <td>SMITH</td>
+          <td>123-456-7890</td>
+          <td>
+            <a class="edit" title="Edit" data-toggle="tooltip"
+              ><i class="material-icons">&#xE254;</i></a
+            >
+            <a class="delete" title="Delete" data-toggle="tooltip"
+              ><i class="material-icons">&#xE872;</i></a
+            >
+          </td>
+          <td class="expanded-row-content hide-row">
+            <p class="address">Address: 123 Main Av, Orlando</p>
+            <p class="email">email: myemail@email.com</p>
+          </td>
+        </tr>
+        <tr onClick="toggleRow(this)">
+          <td>JON</td>
+          <td>SMITH</td>
+          <td>123-456-7890</td>
+          <td>
+            <a class="edit" title="Edit" data-toggle="tooltip"
+              ><i class="material-icons">&#xE254;</i></a
+            >
+            <a class="delete" title="Delete" data-toggle="tooltip"
+              ><i class="material-icons">&#xE872;</i></a
+            >
+          </td>
+          <td class="expanded-row-content hide-row">
+            <p class="address">Address: 123 Main Av, Orlando</p>
+            <p class="email">email: myemail@email.com</p>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <script>
+      const toggleRow = (element) => {
+        element
+          .getElementsByClassName("expanded-row-content")[0]
+          .classList.toggle("hide-row");
+
+        console.log(event);
+      };
+    </script>
+  </body>
+</html>
