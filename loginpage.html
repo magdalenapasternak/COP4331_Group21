@@ -26,18 +26,20 @@
     </style>
   </head>
   <body>
-    <div class="login form-container">
+    <div class="login form-container center">
       <!-- <p id="logintitle">Login</p> -->
-      <span class="lrtitle">Login</span>
+      <p class="lrtitle">Login</p>
+
+      <p id='login-error'></p>
 
       <!-- Username -->
-      <input type="text" id="login-name " placeholder="Enter Username" />
+      <input type="text" id="login-name" placeholder="Enter Username" />
       <br />
 
       <!-- Password -->
       <input
         type="password"
-        id="login-password "
+        id="login-password"
         placeholder="Enter Password"
       />
       <br />
@@ -54,6 +56,9 @@
       <a href="registerpage.html">New member? Sign up!</a>
 
       <span id="login-result"></span>
+      <script src="/js/session.js"></script>
+      <script src="/js/api_interface.js"></script>
+      <script src="/js/login.js"></script>
     </div>
   </body>
 </html>

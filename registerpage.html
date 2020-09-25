@@ -25,7 +25,7 @@
 
   <body>
     <div class="register form-container">
-      <span class="lrtitle">Register</span>
+      <span class="lrtitle" id="lrregister">Register</span>
       <div class="container">
         <div class="row">
           <div class="col-4">
@@ -42,7 +42,7 @@
           <div class="col-7">
             <input
               type="text"
-              id="lastname "
+              id="lastname"
               placeholder="Enter Your Lastname"
             />
           </div>
@@ -54,7 +54,7 @@
           <div class="col-7">
             <input
               type="text"
-              id="user-name "
+              id="user-name"
               placeholder="Enter Your Username"
             />
           </div>
@@ -66,7 +66,7 @@
           <div class="col-7">
             <input
               type="password"
-              id="login-password "
+              id="login-password"
               placeholder="Enter Password"
             />
           </div>
@@ -83,6 +83,9 @@
         <a href="loginpage.html">Already have an account? Sign in!</a>
 
         <span id="login-result"></span>
+        <script src="/js/session.js"></script>
+        <script src="/js/api_interface.js"></script>
+        <script src="/js/register.js"></script>
       </div>
     </div>
   </body>

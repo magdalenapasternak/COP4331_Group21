@@ -25,20 +25,18 @@
 
   <body>
     <div class="navbar">
-      <a href="home.html">Home</a>
-      <a href="searchcontacts.html">Search</a>
-      <a href="addcontacts.html">Add New Contact</a>
-      <a href="loginpage.html">Logout</a>
+      <button class="navbut" href="home.html">Home</button>
+      <button class="navbut">Logout</button>
     </div>
-    <div class="addcontact form-container">
-      <span class="newcontact">Create New Contact</span>
+    <form class="addcontact form-container">
+      <span class="newcontact">New Contact</span>
       <div class="container">
         <div class="row">
           <div class="col-4">
             <p>First Name</p>
           </div>
           <div class="col-7">
-            <input type="text" id="contactname" placeholder="Name" />
+            <input type="text" id="first_name" placeholder="Name" />
           </div>
         </div>
         <div class="row">
@@ -46,7 +44,7 @@
             <p>Last Name</p>
           </div>
           <div class="col-7">
-            <input type="text" id="contactlastname" placeholder="Last Name" />
+            <input type="text" id="last_name" placeholder="Last Name" />
           </div>
         </div>
         <div class="row">
@@ -54,7 +52,7 @@
             <p>E-Mail</p>
           </div>
           <div class="col-7">
-            <input type="text" id="contactemail" placeholder="E-Mail" />
+            <input type="text" id="email" placeholder="E-Mail" />
           </div>
         </div>
         <div class="row">
@@ -64,22 +62,25 @@
           <div class="col-7">
             <input
               type="text"
-              id="contactphonenumber"
+              id="phone_number"
               placeholder="Phone Number"
             />
           </div>
         </div>
-
         <button
           type="button"
-          id="loginbutton"
+          id="submit"
           class="buttons"
-          onclick="addContact();"
         >
           Add Contact
         </button>
         <br />
       </div>
-    </div>
+    </form>
+
+    <script src="/js/session.js"></script>
+    <script src="/js/api_interface.js"></script>
+    <script src="/js/logout.js"></script>
+    <script src="/js/add_contact.js"></script>
   </body>
 </html>
